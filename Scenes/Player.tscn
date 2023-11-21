@@ -1,0 +1,125 @@
+[gd_scene load_steps=13 format=3 uid="uid://crs0gk8j8bga3"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerBody.gd" id="1_insdr"]
+[ext_resource type="Texture2D" uid="uid://dcrrnh7wq5edb" path="res://Assets/character.png" id="2_q2rtd"]
+[ext_resource type="Script" path="res://Scripts/SpringArm3d.gd" id="3_ordi5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_832nq"]
+size = Vector3(1, 2.4, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0372y"]
+radius = 1.0
+
+[sub_resource type="Animation" id="Animation_dul2k"]
+resource_name = "Attack"
+
+[sub_resource type="Animation" id="Animation_qaqdp"]
+resource_name = "Idle"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3d:frame_coords:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ycm0h"]
+resource_name = "Jump"
+
+[sub_resource type="Animation" id="Animation_etxxn"]
+resource_name = "Walk"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3d:frame_coords:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ms6wi"]
+_data = {
+"Attack": SubResource("Animation_dul2k"),
+"Idle": SubResource("Animation_qaqdp"),
+"Jump": SubResource("Animation_ycm0h"),
+"Walk": SubResource("Animation_etxxn")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_atttb"]
+size = Vector3(0.7, 2.4, 0.7)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nssjp"]
+radius = 1.0763
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_constant_speed = true
+script = ExtResource("1_insdr")
+jump_height = 4.0
+jump_time_peak = 0.5
+jump_time_descent = 0.35
+
+[node name="Sprite3d" type="Sprite3D" parent="."]
+pixel_size = 0.05
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_q2rtd")
+hframes = 8
+vframes = 8
+frame = 1
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("BoxShape3D_832nq")
+
+[node name="SpringArm3d" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+collision_mask = 2
+spring_length = 10.0
+margin = 0.2
+script = ExtResource("3_ordi5")
+
+[node name="Camera3d" type="Camera3D" parent="SpringArm3d"]
+cull_mask = 1047585
+current = true
+
+[node name="AttackHitbox" type="Area3D" parent="."]
+transform = Transform3D(0.991894, 0, 0.127065, 0, 1, 0, -0.127065, 0, 0.991894, 1.68619, 0, 0)
+monitoring = false
+monitorable = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="AttackHitbox"]
+shape = SubResource("SphereShape3D_0372y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ms6wi")
+}
+
+[node name="Hurtbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("BoxShape3D_atttb")
+
+[node name="Noise" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Noise"]
+shape = SubResource("CylinderShape3D_nssjp")
+
+[connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]

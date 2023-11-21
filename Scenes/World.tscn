@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://cs1pnyulispqv"]
+
+[ext_resource type="Script" path="res://Scripts/World.gd" id="1_4jdyi"]
+[ext_resource type="PackedScene" uid="uid://crs0gk8j8bga3" path="res://Scenes/Player.tscn" id="2_n3f83"]
+[ext_resource type="PackedScene" uid="uid://2b4h3y4coixp" path="res://Scenes/Enemies/Basic/Enemy2.tscn" id="4_jnlce"]
+
+[sub_resource type="Environment" id="Environment_mw17p"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_j7xu1"]
+vertices = PackedVector3Array(-6.98513, 0.440037, -18.7747, -17.2351, 0.440037, -18.7747, -17.2351, 0.440037, -11.0247, 2.51487, 0.440037, -4.27466, 3.51487, 0.440037, -4.52466, 3.51487, 0.440037, -18.7747, -6.98513, 0.440037, -18.7747, 2.51487, 0.440037, -2.77466, 2.51487, 0.440037, -4.27466, -6.98513, 0.440037, -18.7747, -17.2351, 0.440037, -11.0247, -17.2351, 0.440037, -3.02466, 17.2649, 0.440037, -10.5247, 17.2649, 0.440037, -18.7747, 10.2649, 0.440037, -18.7747, 4.76487, 0.440037, -4.27466, 4.76487, 0.440037, -2.27466, 17.2649, 0.440037, -2.27466, 3.51487, 0.440037, -4.52466, 4.76487, 0.440037, -4.27466, 17.2649, 0.440037, -2.27466, 17.2649, 0.440037, -10.5247, 10.2649, 0.440037, -18.7747, 3.51487, 0.440037, -18.7747, -17.2351, 0.440037, 2.97534, 2.51487, 0.440037, 2.72534, 2.51487, 0.440037, -2.77466, -17.2351, 0.440037, -3.02466, 4.76487, 0.440037, 2.22534, 17.2649, 0.440037, 2.22534, 17.2649, 0.440037, -2.27466, 4.76487, 0.440037, -2.27466, 10.2649, 0.440037, 18.7253, 17.2649, 0.440037, 18.7253, 17.2649, 0.440037, 10.4753, 17.2649, 0.440037, 2.22534, 4.76487, 0.440037, 2.22534, 4.76487, 0.440037, 4.22534, 17.2649, 0.440037, 2.22534, 4.76487, 0.440037, 4.22534, 3.51487, 0.440037, 4.47534, 3.51487, 0.440037, 18.7253, 10.2649, 0.440037, 18.7253, 17.2649, 0.440037, 10.4753, -17.2351, 0.440037, 10.7253, -17.2351, 0.440037, 18.7253, -6.98513, 0.440037, 18.7253, 3.51487, 0.440037, 18.7253, 3.51487, 0.440037, 4.47534, 2.51487, 0.440037, 4.22534, -6.98513, 0.440037, 18.7253, -6.98513, 0.440037, 18.7253, 2.51487, 0.440037, 4.22534, 2.51487, 0.440037, 2.72534, -17.2351, 0.440037, 2.97534, -17.2351, 0.440037, 10.7253)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 11), PackedInt32Array(14, 13, 12), PackedInt32Array(17, 16, 15), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(21, 18, 22), PackedInt32Array(22, 18, 23), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(34, 33, 32), PackedInt32Array(37, 36, 35), PackedInt32Array(39, 38, 40), PackedInt32Array(40, 38, 43), PackedInt32Array(40, 43, 42), PackedInt32Array(40, 42, 41), PackedInt32Array(46, 45, 44), PackedInt32Array(48, 47, 49), PackedInt32Array(49, 47, 50), PackedInt32Array(52, 51, 53), PackedInt32Array(53, 51, 55), PackedInt32Array(53, 55, 54)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndm1w"]
+albedo_color = Color(0.313726, 0.054902, 0.333333, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5w4vc"]
+albedo_color = Color(0.231373, 0.0117647, 0.145098, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbgx7"]
+albedo_color = Color(0.27451, 0.0117647, 0.231373, 1)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_4jdyi")
+
+[node name="Player" parent="." instance=ExtResource("2_n3f83")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.72391, 2, 0)
+floor_snap_length = 0.2
+
+[node name="DirectionalLight3d" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 10.3748, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mw17p")
+
+[node name="NavigationRegion3d" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_j7xu1")
+
+[node name="CsgCombiner3d" type="CSGCombiner3D" parent="NavigationRegion3d"]
+use_collision = true
+
+[node name="CsgBox3d" type="CSGBox3D" parent="NavigationRegion3d/CsgCombiner3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+material_override = SubResource("StandardMaterial3D_ndm1w")
+material_overlay = SubResource("StandardMaterial3D_5w4vc")
+use_collision = true
+size = Vector3(35.4703, 1, 38.5493)
+material = SubResource("StandardMaterial3D_vbgx7")
+
+[node name="Rock" type="CSGBox3D" parent="NavigationRegion3d/CsgCombiner3d"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55555, 0.743707, 0)
+size = Vector3(1, 4.60734, 7.67991)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_jnlce")]
+
+[editable path="Player"]

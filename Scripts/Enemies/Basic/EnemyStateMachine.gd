@@ -16,11 +16,13 @@ var speed = 3
 
 func _ready():
 	$StateMachine/Hurt.connect("lala", Callable(self, "_on_hurt_lala"))
+	$StateMachine.init() 
 func _physics_process(_delta):
 	pass
 func _process(_delta):
 	pass
-func _on_hurt_lala(nome):
+
+func _on_hurt_lala(_nome):
 	pass # Replace with function body.
 
 

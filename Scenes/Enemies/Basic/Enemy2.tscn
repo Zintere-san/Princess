@@ -138,6 +138,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 shape = SubResource("BoxShape3D_wbpai")
 
 [node name="NavigationAgent3d" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
 path_height_offset = 1.0
 avoidance_enabled = true
 radius = 2.0
@@ -187,37 +188,40 @@ script = ExtResource("6_75hs7")
 enemy = NodePath("../..")
 
 [node name="Steering" type="Node3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="1" type="RayCast3D" parent="Steering"]
+[node name="0" type="RayCast3D" parent="Steering"]
 target_position = Vector3(0, 0, -5)
 
-[node name="2" type="RayCast3D" parent="Steering"]
+[node name="1" type="RayCast3D" parent="Steering"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 target_position = Vector3(0, 0, -5)
 
-[node name="3" type="RayCast3D" parent="Steering"]
+[node name="2" type="RayCast3D" parent="Steering"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, 0, -5)
 
-[node name="4" type="RayCast3D" parent="Steering"]
+[node name="3" type="RayCast3D" parent="Steering"]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 0)
 target_position = Vector3(0, 0, -5)
 
-[node name="5" type="RayCast3D" parent="Steering"]
+[node name="4" type="RayCast3D" parent="Steering"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 target_position = Vector3(0, 0, -5)
 
-[node name="6" type="RayCast3D" parent="Steering"]
+[node name="5" type="RayCast3D" parent="Steering"]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
 target_position = Vector3(0, 0, -5)
 
-[node name="7" type="RayCast3D" parent="Steering"]
+[node name="6" type="RayCast3D" parent="Steering"]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
 target_position = Vector3(0, 0, -5)
 
-[node name="8" type="RayCast3D" parent="Steering"]
+[node name="7" type="RayCast3D" parent="Steering"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
 target_position = Vector3(0, 0, -5)
 
+[connection signal="target_reached" from="NavigationAgent3d" to="StateMachine/Chase" method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3d" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="target_reached" from="StateMachine/Chase" to="StateMachine" method="_on_chase_target_reached"]

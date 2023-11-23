@@ -10,7 +10,7 @@ func Enter():
 	for i in enemy.casts.get_children():
 		i.enabled = false
 		
-
+	print("Enter idle")
 func Update(_delta):
 	pass
 	
@@ -23,4 +23,4 @@ func Exit():
 	enemy.vision_time.stop()
 	for i in enemy.casts.get_children():
 		i.enabled = true
-	
+	print("Exit idle")

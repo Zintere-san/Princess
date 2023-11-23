@@ -5,7 +5,7 @@ signal lala(nome)
 
 
 func Enter():
-	emit_signal("lala", "haha")
+	print("Hurt Enter")
 func Update(_delta):
 	pass
 func Physics_Update(_delta):

@@ -12,8 +12,17 @@ config_version=5
 
 config/name="Princess"
 run/main_scene="res://Scenes/World.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Scenes/Enemy_scene/": "red",
+"res://Scenes/Player_scene/": "blue",
+"res://Scripts/Enemy_script/": "red",
+"res://Scripts/Player_script/": "blue"
+}
 
 [importer_defaults]
 

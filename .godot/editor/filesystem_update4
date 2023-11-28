@@ -1,9 +1,10 @@
-res://Scripts/Enemies/States/StateMachine.gd
 res://Scenes/Enemies/Basic/Enemy2.tscn
-res://Scripts/Enemies/States/ChaseStateEnemy.gd
-res://Scripts/Enemies/States/IdleStateEnemy.gd
+res://Scripts/Enemies/States/StateMachine.gd
 res://Scenes/Player.tscn
 res://Scenes/World.tscn
 res://Scenes/Enemies/Basic/Enemy.tscn
-res://Scripts/Enemies/States/HurtStateEnemy.gd
-res://Scripts/Enemies/Basic/EnemyStateMachine.gd
+res://Scripts/Enemies/States/ChaseStateEnemy.gd
+res://Scenes/Enemy_scene/Basic/Enemy2.tscn
+res://Scripts/Enemy_script/States/ChaseStateEnemy.gd
+res://Scenes/Enemy_scene/Basic/Enemy.tscn
+res://Scenes/Player_scene/Player.tscn

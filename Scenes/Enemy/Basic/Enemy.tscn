@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cs1ww36hn5o6x"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy/Body/Enemy.gd" id="1_ud4r5"]
-[ext_resource type="Texture2D" uid="uid://blf5uhauqockv" path="res://Assets/Sprite-0002.png" id="2_7h28f"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Body/Enemy.gd" id="1_3o8jp"]
+[ext_resource type="Texture2D" uid="uid://blf5uhauqockv" path="res://Assets/Sprite-0002.png" id="2_5ny30"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c56uk"]
 size = Vector3(1, 2.4, 1)
@@ -118,7 +118,7 @@ points = PackedVector3Array(0, 1, 0, 0.194988, -1, -0.980814, 0, -1, -1, -0.1951
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 floor_constant_speed = true
-script = ExtResource("1_ud4r5")
+script = ExtResource("1_3o8jp")
 
 [node name="LineOfSight" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -100)
@@ -140,7 +140,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 pixel_size = 0.05
 billboard = 2
 texture_filter = 0
-texture = ExtResource("2_7h28f")
+texture = ExtResource("2_5ny30")
 hframes = 10
 vframes = 8
 

@@ -28,4 +28,4 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	move_and_slide()
 
 func calc_player_direction():
-	return player.global_position.direction_to(global_position)
+	return Vector3(player.global_position.x, 0, player.global_position.z).direction_to(Vector3(global_position.x, 0, global_position.z))

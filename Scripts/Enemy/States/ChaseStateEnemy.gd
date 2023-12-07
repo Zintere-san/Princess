@@ -16,6 +16,7 @@ func Enter():
 func Update(delta):
 
 	enemy.nav_agent.target_position = enemy.player.position
+	enemy.nav_agent.target_position = enemy.nav_agent.get_final_position()
 	var current_location = enemy.position
 	var next_location = enemy.nav_agent.get_next_path_position()
 	var new_velocity = (next_location - current_location).normalized()

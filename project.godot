@@ -13,13 +13,15 @@ config_version=5
 config/name="Princess"
 run/main_scene="res://Scenes/World.tscn"
 config/features=PackedStringArray("4.2")
-config/icon="res://icon.svg"
+config/icon="res://Assets/icon.svg"
 
 [file_customization]
 
 folder_colors={
-"res://Scenes/Enemy_scene/": "red",
-"res://Scenes/Player_scene/": "blue",
+"res://Assets/": "purple",
+"res://Scenes/": "teal",
+"res://Scenes/Enemy/": "red",
+"res://Scenes/Player/": "blue",
 "res://Scripts/": "orange",
 "res://Scripts/Enemy/": "red",
 "res://Scripts/Player/": "blue",

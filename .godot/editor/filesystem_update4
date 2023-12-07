@@ -12,3 +12,6 @@ res://Scripts/Player/States/PlayerIdle.gd
 res://Scripts/Enemy/States/IdleStateEnemy.gd
 res://Scripts/Enemy/StateMachine/Wolf.gd
 res://Scripts/Enemy/States/HurtStateEnemy.gd
+res://Scenes/Enemy/Basic/Enemy2.tscn
+res://Scenes/Player/Player.tscn
+res://Scenes/Enemy/Basic/Enemy.tscn

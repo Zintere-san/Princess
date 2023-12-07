@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwurxjv3fne6v"]
 
-[ext_resource type="PackedScene" uid="uid://cs1ww36hn5o6x" path="res://Scenes/Enemy_scene/Basic/Enemy.tscn" id="1_7ah8k"]
+[ext_resource type="PackedScene" uid="uid://cs1ww36hn5o6x" path="res://Scenes/Enemy/Basic/Enemy.tscn" id="1_7ah8k"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Basic/FlyingEnemy.gd" id="2_1fe0b"]
 
 [node name="Enemy" instance=ExtResource("1_7ah8k")]

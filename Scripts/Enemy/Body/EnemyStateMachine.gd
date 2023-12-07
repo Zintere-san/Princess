@@ -9,23 +9,23 @@ class_name BaseEnemy
 @onready var anim_player = $AnimationPlayer as AnimationPlayer
 @onready var nav_agent   = $NavigationAgent3d as NavigationAgent3D
 
-
 var player: CharacterBody3D
 var forward = Vector3()
 var speed = 3
 
 func _ready():
-	$StateMachine/Hurt.connect("lala", Callable(self, "_on_hurt_lala"))
-	$StateMachine.init() 
+	$StateMachine.init()
+
 func _physics_process(_delta):
-	pass
+	if not is_on_floor():
+		velocity.y -= 3
+
 func _process(_delta):
 	pass
-
-func _on_hurt_lala(_nome):
-	pass # Replace with function body.
-
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	velocity = velocity.move_toward(safe_velocity, 0.9)
 	move_and_slide()
+
+func calc_player_direction():
+	return player.global_position.direction_to(global_position)

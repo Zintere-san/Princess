@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @export var speed : float = 7
 @export var jump_height : float
@@ -10,9 +11,9 @@ extends CharacterBody3D
 @onready var jump_grav : float = -2.0 * jump_height / jump_time_peak ** 2
 @onready var fall_grav : float = -2.0 * jump_height / jump_time_descent ** 2
 
-@onready var springarm := $SpringArm3d
-@onready var animation := $AnimationPlayer 
-@onready var sprite := $Sprite3d
+@onready var springarm := $SpringArm3d as SpringArm3D
+@onready var animation := $AnimationPlayer as AnimationPlayer
+@onready var sprite := $Sprite3d as Sprite3D
 
 @onready var camera_forward
 

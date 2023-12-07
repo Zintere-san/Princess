@@ -1,6 +1,6 @@
-res://Scripts/Enemies/States
-res://Scripts/Enemies/Basic
-res://Scenes/Enemies/Basic
-res://Scenes/Enemies
+res://Scripts/Player/States
+res://Scripts/Player
+res://Scripts/Enemy/StateMachine
+res://Scripts/StateMachine
 res://Scenes
 res://Scripts

@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://2b4h3y4coixp"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy_script/Basic/EnemyStateMachine.gd" id="1_ra66w"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Body/EnemyStateMachine.gd" id="1_ra66w"]
 [ext_resource type="Texture2D" uid="uid://blf5uhauqockv" path="res://Assets/Sprite-0002.png" id="2_yewup"]
-[ext_resource type="Script" path="res://Scripts/Enemy_script/States/StateMachine.gd" id="3_r285u"]
-[ext_resource type="Script" path="res://Scripts/Enemy_script/States/IdleStateEnemy.gd" id="4_drup2"]
-[ext_resource type="Script" path="res://Scripts/Enemy_script/States/HurtStateEnemy.gd" id="5_mros7"]
-[ext_resource type="Script" path="res://Scripts/Enemy_script/States/ChaseStateEnemy.gd" id="6_tbiau"]
+[ext_resource type="Script" path="res://Scripts/Enemy/StateMachine/Wolf.gd" id="3_m7e8g"]
+[ext_resource type="Script" path="res://Scripts/Enemy/States/IdleStateEnemy.gd" id="4_drup2"]
+[ext_resource type="Script" path="res://Scripts/Enemy/States/HurtStateEnemy.gd" id="5_mros7"]
+[ext_resource type="Script" path="res://Scripts/Enemy/States/ChaseStateEnemy.gd" id="6_tbiau"]
 
 [sub_resource type="Animation" id="Animation_yy3qp"]
 length = 0.001
@@ -121,6 +121,7 @@ radius = 3.9246
 points = PackedVector3Array(0, 1, 0, 0.194988, -1, -0.980814, 0, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041)
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
+collision_mask = 4
 floor_constant_speed = true
 script = ExtResource("1_ra66w")
 
@@ -172,8 +173,8 @@ shape = SubResource("ConvexPolygonShape3D_i66h1")
 wait_time = 0.5
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_r285u")
-initial_state = NodePath("Chase")
+script = ExtResource("3_m7e8g")
+initial_state = NodePath("Hurt")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_drup2")
@@ -183,9 +184,15 @@ enemy = NodePath("../..")
 script = ExtResource("5_mros7")
 enemy = NodePath("../..")
 
-[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="Ambush" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_tbiau")
 enemy = NodePath("../..")
+
+[node name="Alert" type="Node" parent="StateMachine"]
+
+[node name="Chase" type="Node" parent="StateMachine"]
+
+[node name="Wander" type="Node" parent="StateMachine"]
 
 [node name="Steering" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -193,35 +200,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="0" type="RayCast3D" parent="Steering"]
 target_position = Vector3(0, 0, -5)
+collision_mask = 4
 
 [node name="1" type="RayCast3D" parent="Steering"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
-target_position = Vector3(0, 0, -5)
-
-[node name="2" type="RayCast3D" parent="Steering"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-target_position = Vector3(0, 0, -5)
-
-[node name="3" type="RayCast3D" parent="Steering"]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 0)
-target_position = Vector3(0, 0, -5)
-
-[node name="4" type="RayCast3D" parent="Steering"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-target_position = Vector3(0, 0, -5)
-
-[node name="5" type="RayCast3D" parent="Steering"]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
-target_position = Vector3(0, 0, -5)
-
-[node name="6" type="RayCast3D" parent="Steering"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
-target_position = Vector3(0, 0, -5)
-
-[node name="7" type="RayCast3D" parent="Steering"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
 target_position = Vector3(0, 0, -5)
+collision_mask = 4
 
-[connection signal="target_reached" from="NavigationAgent3d" to="StateMachine/Chase" method="_on_navigation_agent_3d_target_reached"]
+[node name="2" type="RayCast3D" parent="Steering"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, 0, -5)
+collision_mask = 4
+
+[node name="3" type="RayCast3D" parent="Steering"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, -5)
+collision_mask = 4
+
+[node name="4" type="RayCast3D" parent="Steering"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+target_position = Vector3(0, 0, -5)
+collision_mask = 4
+
+[node name="5" type="RayCast3D" parent="Steering"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, -5)
+collision_mask = 4
+
+[node name="6" type="RayCast3D" parent="Steering"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, 0, -5)
+collision_mask = 4
+
+[node name="7" type="RayCast3D" parent="Steering"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, -5)
+collision_mask = 4
+
+[connection signal="target_reached" from="NavigationAgent3d" to="StateMachine/Hurt" method="_on_navigation_agent_3d_target_reached"]
+[connection signal="target_reached" from="NavigationAgent3d" to="StateMachine/Ambush" method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3d" to="." method="_on_navigation_agent_3d_velocity_computed"]
-[connection signal="target_reached" from="StateMachine/Chase" to="StateMachine" method="_on_chase_target_reached"]
+[connection signal="body_entered" from="SoundArea" to="StateMachine/Idle" method="_on_sound_area_body_entered"]
+[connection signal="body_entered" from="VisionArea" to="StateMachine/Idle" method="_on_vision_area_body_entered"]
+[connection signal="player_detected" from="StateMachine/Idle" to="StateMachine" method="_on_idle_player_detected"]
+[connection signal="player_hear" from="StateMachine/Idle" to="StateMachine" method="_on_idle_player_hear"]
+[connection signal="player_see" from="StateMachine/Idle" to="StateMachine" method="_on_idle_player_see"]
+[connection signal="hurt_no_more" from="StateMachine/Hurt" to="StateMachine" method="_on_hurt_hurt_no_more"]
+[connection signal="target_reached" from="StateMachine/Ambush" to="StateMachine" method="_on_ambush_target_reached"]

@@ -1,4 +1,5 @@
 extends Node
+class_name StateMachine
 @export var initial_state : State
 var current_state : State
 var states : Dictionary = {}
@@ -31,6 +32,3 @@ func change_state(state : State):
 	current_state.Exit()
 	current_state = state
 	current_state.Enter()
-
-func _on_chase_target_reached():
-	change_state($Hurt)

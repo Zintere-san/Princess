@@ -20,8 +20,10 @@ config/icon="res://icon.svg"
 folder_colors={
 "res://Scenes/Enemy_scene/": "red",
 "res://Scenes/Player_scene/": "blue",
-"res://Scripts/Enemy_script/": "red",
-"res://Scripts/Player_script/": "blue"
+"res://Scripts/": "orange",
+"res://Scripts/Enemy/": "red",
+"res://Scripts/Player/": "blue",
+"res://Scripts/StateMachine/": "yellow"
 }
 
 [importer_defaults]
@@ -89,4 +91,5 @@ debug={
 
 3d_physics/layer_1="physical_bodies"
 3d_physics/layer_2="environment"
-3d_physics/layer_3="invisible_walls"
+3d_physics/layer_3="enemy_avoid"
+3d_physics/layer_4="enemy"

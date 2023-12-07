@@ -14,5 +14,5 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(_delta):
 	get_parent().camera_forward = -global_transform.basis.z 
 	if boss == true:
-		look_at(get_tree().current_scene.get_node("Rock").position)
+		look_at(get_tree().current_scene.get_node("%Rock").position)
 	rotation.x = deg_to_rad(-45)

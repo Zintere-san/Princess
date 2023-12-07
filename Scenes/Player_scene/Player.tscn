@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://crs0gk8j8bga3"]
 
-[ext_resource type="Script" path="res://Scripts/Player_script/PlayerBody.gd" id="1_insdr"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerBody.gd" id="1_insdr"]
 [ext_resource type="Texture2D" uid="uid://dcrrnh7wq5edb" path="res://Assets/character.png" id="2_q2rtd"]
-[ext_resource type="Script" path="res://Scripts/Player_script/SpringArm3d.gd" id="3_ordi5"]
+[ext_resource type="Script" path="res://Scripts/Player/SpringArm3d.gd" id="3_ordi5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_832nq"]
 size = Vector3(1, 2.4, 1)
@@ -64,7 +64,7 @@ size = Vector3(0.7, 2.4, 0.7)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nssjp"]
 radius = 1.0763
 
-[node name="Player" type="CharacterBody3D" groups=["player"]]
+[node name="Player" type="CharacterBody3D" groups=["avoid", "player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 slide_on_ceiling = false
 floor_stop_on_slope = false

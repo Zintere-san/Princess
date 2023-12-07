@@ -21,19 +21,17 @@ func Update(delta):
 	var new_velocity = (next_location - current_location).normalized()
 	for i in cast.size():
 		interest[i] = float("%.2f" % cast[i].normalized().dot(Vector2(new_velocity.x, new_velocity.z)))
-	#assess_dangers()
+	assess_dangers()
 	var desired_velocity = Vector3(cast[interest.find(interest.max())].x, 0, cast[interest.find(interest.max())].y).normalized() * enemy.speed
 	var current_velocity = enemy.get_velocity()
-	var steering_force = desired_velocity - current_velocity
-	#teste
-
-	#teste
+	var steering_force = (desired_velocity - current_velocity) * get_parent().steering_value
 	enemy.nav_agent.set_velocity(enemy.velocity + (steering_force * delta))
+
 func Physics_Update(_delta):
 	pass
 
 func Exit():
-	print("Exit chase")
+	pass
 	
 func assess_dangers():
 	danger = [0,0,0,0,0,0,0,0]
@@ -43,12 +41,13 @@ func assess_dangers():
 			var origin = raycast.global_transform.origin
 			var collision_point = raycast.get_collision_point()
 			var distance = float("%.2f" % origin.distance_to(collision_point))
-			danger[array_spot] += 5 - distance
-			danger[(array_spot + 1) % danger.size()] += (5 - distance) / 2
-			danger[(array_spot - 1) % danger.size()] += (5 - distance) / 2
+			danger [array_spot] += 5 - distance
+			danger [(array_spot + 1) % danger.size()] += (5 - distance) / 2
+			danger [(array_spot - 1) % danger.size()] += (5 - distance) / 2
+
 	for i in interest.size():
-		interest[i] -= danger[i]
+		interest [i] -= danger [i]
 
 func _on_navigation_agent_3d_target_reached():
-	pass
-	#emit_signal("target_reached")
+	emit_signal("target_reached")
+

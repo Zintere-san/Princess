@@ -9,7 +9,7 @@ func _ready():
 	for i in $Enemies.get_children(true):
 		if i is CharacterBody3D:
 			i.player = player
-			i.nav_agent.target_position = player.position
+			#i.nav_agent.target_position = player.position
 
 
 

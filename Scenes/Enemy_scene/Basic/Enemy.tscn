@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cs1ww36hn5o6x"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy_script/Basic/Enemy.gd" id="1_ud4r5"]
+[ext_resource type="Script" path="res://Scripts/Enemy/Body/Enemy.gd" id="1_ud4r5"]
 [ext_resource type="Texture2D" uid="uid://blf5uhauqockv" path="res://Assets/Sprite-0002.png" id="2_7h28f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c56uk"]
